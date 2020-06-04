@@ -4,7 +4,7 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,9 @@
     "node-nlp": "^4.4.0"
   },
   "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0",
     "tslint": "^6.1.2",
     "tslint-config-standard": "^9.0.0",
     "typescript": "^3.9.3"
