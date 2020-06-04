@@ -28,9 +28,9 @@ describe('nlp/addDocuments', () => {
     })
 
     expect(addDocument).toBeCalledTimes(4)
-    expect(addDocument).toBeCalledWith(language, FIRST_INTENT, FIRST_INTENT)
-    expect(addDocument).toBeCalledWith(language, FIRST_INTENT, SECOND_INTENT)
-    expect(addDocument).toBeCalledWith(language, SECOND_INTENT, FIRST_INTENT)
-    expect(addDocument).toBeCalledWith(language, SECOND_INTENT, SECOND_WORD)
+    expect(addDocument).toBeCalledWith(language, FIRST_WORD, FIRST_INTENT)
+    expect(addDocument).toBeCalledWith(language, SECOND_WORD, FIRST_INTENT)
+    expect(addDocument).toBeCalledWith(language, FIRST_WORD, SECOND_INTENT)
+    expect(addDocument).toBeCalledWith(language, SECOND_WORD, SECOND_INTENT)
   })
 })
