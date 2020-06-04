@@ -1,3 +1,5 @@
+import { IIntent } from '../../src/interfaces/IIntent'
+
 const buildNlpObject = () => ({
   addDocument: jest.fn(),
   train: jest.fn(),
