@@ -1,10 +1,11 @@
 import { IIntent } from '../interfaces/IIntent'
 import { addDocuments } from './addDocuments'
+import { INlpManager } from 'interfaces/INlpManager'
 
 const trainAndSave = async (options: {
-  nlp,
+  nlp: INlpManager,
   intents: IIntent[],
-  language
+  language: string
 }) => {
 
   addDocuments(options)

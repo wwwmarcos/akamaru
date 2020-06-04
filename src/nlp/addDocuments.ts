@@ -1,9 +1,10 @@
 import { IIntent } from '../interfaces/IIntent'
+import { INlpManager } from '../interfaces/INlpManager'
 
 const addDocuments = (options: {
-  nlp,
+  nlp: INlpManager,
   intents: IIntent[],
-  language
+  language: string
 }) => {
   for (const intent of options.intents) {
     for (const training of intent.training) {
@@ -16,6 +17,5 @@ const addDocuments = (options: {
   }
 }
 
-export {
-  addDocuments
-}
+export { addDocuments }
+
