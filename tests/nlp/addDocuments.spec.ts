@@ -1,5 +1,4 @@
 import { addDocuments } from '../../src/nlp/addDocuments'
-import { IIntent } from '../../src/interfaces/IIntent'
 
 import {
   buildNlpObject,
@@ -7,17 +6,13 @@ import {
   SECOND_INTENT,
   FIRST_WORD,
   SECOND_WORD,
-  LANGUAGE
+  LANGUAGE,
+  intents
 } from './mockData'
 
 describe('nlp/addDocuments', () => {
   it('should add documents on nlp instance', () => {
     const nlp = buildNlpObject()
-
-    const intents: IIntent[] = [
-      { name: FIRST_INTENT, training: [FIRST_WORD, SECOND_WORD] },
-      { name: SECOND_INTENT, training: [FIRST_WORD, SECOND_WORD] }
-    ]
 
     addDocuments({
       nlp,
