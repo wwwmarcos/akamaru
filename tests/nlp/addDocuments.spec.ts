@@ -1,20 +1,18 @@
 import { addDocuments } from '../../src/nlp/addDocuments'
 import { IIntent } from '../../src/interfaces/IIntent'
 
+import {
+  buildNlpObject,
+  FIRST_INTENT,
+  SECOND_INTENT,
+  FIRST_WORD,
+  SECOND_WORD,
+  LANGUAGE
+} from './mockData'
+
 describe('nlp/addDocuments', () => {
   it('should add documents on nlp instance', () => {
-    const addDocument = jest.fn()
-    const nlp = {
-      addDocument
-    }
-
-    const language = 'pt-br'
-
-    const FIRST_INTENT = 'sasuke'
-    const SECOND_INTENT = 'naruto'
-
-    const FIRST_WORD = 'NARUTOOOOO'
-    const SECOND_WORD = 'NARUTO'
+    const nlp = buildNlpObject()
 
     const intents: IIntent[] = [
       { name: FIRST_INTENT, training: [FIRST_WORD, SECOND_WORD] },
@@ -24,13 +22,13 @@ describe('nlp/addDocuments', () => {
     addDocuments({
       nlp,
       intents,
-      language
+      language: LANGUAGE
     })
 
-    expect(addDocument).toBeCalledTimes(4)
-    expect(addDocument).toBeCalledWith(language, FIRST_WORD, FIRST_INTENT)
-    expect(addDocument).toBeCalledWith(language, SECOND_WORD, FIRST_INTENT)
-    expect(addDocument).toBeCalledWith(language, FIRST_WORD, SECOND_INTENT)
-    expect(addDocument).toBeCalledWith(language, SECOND_WORD, SECOND_INTENT)
+    expect(nlp.addDocument).toBeCalledTimes(4)
+    expect(nlp.addDocument).toBeCalledWith(LANGUAGE, FIRST_WORD, FIRST_INTENT)
+    expect(nlp.addDocument).toBeCalledWith(LANGUAGE, SECOND_WORD, FIRST_INTENT)
+    expect(nlp.addDocument).toBeCalledWith(LANGUAGE, FIRST_WORD, SECOND_INTENT)
+    expect(nlp.addDocument).toBeCalledWith(LANGUAGE, SECOND_WORD, SECOND_INTENT)
   })
 })
