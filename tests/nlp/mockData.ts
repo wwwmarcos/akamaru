@@ -1,4 +1,4 @@
-import { IIntent } from '../../src/interfaces/IIntent'
+import { Intent } from '../../src/interfaces/Intent'
 
 const buildNlpObject = () => ({
   addDocument: jest.fn(),
@@ -12,7 +12,7 @@ const SECOND_INTENT = 'naruto'
 const FIRST_WORD = 'NARUTOOOOO'
 const SECOND_WORD = 'NARUTO'
 
-const intents: IIntent[] = [
+const intents: Intent[] = [
   { name: FIRST_INTENT, training: [FIRST_WORD, SECOND_WORD] },
   { name: SECOND_INTENT, training: [FIRST_WORD, SECOND_WORD] }
 ]

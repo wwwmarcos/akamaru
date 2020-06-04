@@ -1,9 +1,9 @@
-import { IIntent } from '../interfaces/IIntent'
+import { Intent } from '../interfaces/Intent'
 import { INlpManager } from '../interfaces/INlpManager'
 
 const addDocuments = (options: {
   nlp: INlpManager,
-  intents: IIntent[],
+  intents: Intent[],
   language: string
 }) => {
   for (const intent of options.intents) {
