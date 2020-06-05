@@ -5,7 +5,7 @@ const addDocuments = (options: {
   nlp: INlpManager,
   intents: Intent[],
   language: string
-}) => {
+}): void => {
   for (const intent of options.intents) {
     for (const training of intent.training) {
       options.nlp.addDocument(

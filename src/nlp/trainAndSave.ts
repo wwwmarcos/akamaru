@@ -6,7 +6,7 @@ const trainAndSave = async (options: {
   nlp: INlpManager,
   intents: Intent[],
   language: string
-}) => {
+}): Promise<{ nlp: INlpManager }> => {
 
   addDocuments(options)
 
