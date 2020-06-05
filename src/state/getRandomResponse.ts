@@ -1,4 +1,4 @@
-const getRandomResponse = async (stateResponses: string[]): Promise<string> =>
+const getRandomResponse = (stateResponses: string[]): string =>
   stateResponses[Math.floor(Math.random() * stateResponses.length)]
 
 export {
