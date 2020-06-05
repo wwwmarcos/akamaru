@@ -1,6 +1,11 @@
 
-type IAction = {
-  onIntent: string,
+type Action = {
+  onIntent?: string,
+  responses?: string[],
+  goToState?: string
+}
+
+type UnknownIntentAction = {
   responses?: string[],
   goToState?: string
 }
@@ -8,12 +13,12 @@ type IAction = {
 type State = {
   name: string
   startTexts: string[]
-  unknownIntentAction: {
-    responses: string[]
-  }
-  actions: IAction[]
+  unknownIntentAction: UnknownIntentAction
+  actions: Action[]
 }
 
 export {
-  State
+  State,
+  Action,
+  UnknownIntentAction
 }
