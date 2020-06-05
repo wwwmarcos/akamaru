@@ -8,7 +8,7 @@ import {
   SECOND_WORD,
   LANGUAGE,
   intents
-} from './mockData'
+} from '../mockData'
 
 describe('nlp/addDocuments', () => {
   it('should add documents on nlp instance', () => {

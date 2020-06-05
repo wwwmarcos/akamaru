@@ -1,7 +1,7 @@
 
 import { trainAndSave } from '../../src/nlp/trainAndSave'
 
-import { buildNlpObject, intents, LANGUAGE } from './mockData'
+import { buildNlpObject, intents, LANGUAGE } from '../mockData'
 
 describe('nlp/trainAndSave', () => {
   it('should train and save the model', async () => {

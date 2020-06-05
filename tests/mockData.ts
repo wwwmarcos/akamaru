@@ -1,4 +1,4 @@
-import { Intent } from '../../src/interfaces/Intent'
+import { Intent } from '../src/interfaces/Intent'
 import { INlpManager } from 'interfaces/INlpManager'
 
 const buildNlpObject = (): INlpManager => ({
