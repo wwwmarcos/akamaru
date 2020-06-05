@@ -3,7 +3,8 @@ import { State } from './State'
 
 type RikudoConfig = {
   allIntents: Intent[]
-  training: string[],
+  language: string
+  training: string[]
   states: State[]
 }
 
