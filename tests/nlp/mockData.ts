@@ -1,8 +1,10 @@
 import { Intent } from '../../src/interfaces/Intent'
+import { INlpManager } from 'interfaces/INlpManager'
 
-const buildNlpObject = () => ({
+const buildNlpObject = (): INlpManager => ({
   addDocument: jest.fn(),
   train: jest.fn(),
+  process: jest.fn(),
   save: jest.fn()
 })
 

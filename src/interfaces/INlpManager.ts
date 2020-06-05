@@ -4,8 +4,14 @@ interface INlpManager {
   addDocument: (
     language: string,
     training: string,
-    intent: string,
+    intent: string
   ) => Promise<void>
+  process: (
+    language: string,
+    utterance: string
+  ) => Promise<{
+    intent: string
+  }>
 }
 
 export {
