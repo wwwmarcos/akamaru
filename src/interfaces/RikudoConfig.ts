@@ -1,6 +1,5 @@
 import { Intent } from './Intent'
 import { State } from './State'
-import { INlpManager } from './INlpManager'
 
 type UserSession = {
   userId: string
@@ -14,8 +13,6 @@ type UserSession = {
 }
 
 type Resolvers = {
-  bot: RikudoConfig
-  nlp: INlpManager
   saveSession: (userId: string, state: UserSession) => Promise<UserSession>
   getSession: (userId: string) => Promise<UserSession>
 }
