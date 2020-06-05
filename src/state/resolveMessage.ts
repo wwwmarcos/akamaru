@@ -1,22 +1,24 @@
-import { Resolvers } from '../interfaces/RikudoConfig'
+import { Resolvers, RikudoConfig } from '../interfaces/RikudoConfig'
 import { getIntentAction } from './getIntentAction'
 import { getState } from './getState'
 import { resolveAction } from './resolveAction'
 import { resolveFirstContact } from './resolveFirstContact'
 import { sendResponse } from './sendResponse'
+import { INlpManager } from '../interfaces/INlpManager'
 
-const resolveMessage = ({
-  saveSession,
-  getSession,
-  bot,
-  nlp
-}: Resolvers) =>
+const resolveMessage = (utils: {
+  saveSession: Resolvers['saveSession'],
+  getSession: Resolvers['getSession'],
+  bot: RikudoConfig,
+  nlp: INlpManager
+}) =>
   async (options: {
     text: string,
     userId?: string
   }) => {
 
-    const { userId =, text } = options
+    const { userId, text } = options
+    const { getSession, saveSession, bot, nlp } = utils
     const { states: availableStates, language } = bot
 
     const session = await getSession(userId)
