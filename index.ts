@@ -1,21 +1,27 @@
 import { NlpManager } from 'node-nlp'
 import { INlpManager } from './src/interfaces/INlpManager'
-import { trainAndSave } from 'nlp/trainAndSave'
 import { Intent } from './src/interfaces/Intent'
-import { RikudoConfig } from './src/interfaces/RikudoConfig'
+import { Resolvers, RikudoConfig } from './src/interfaces/RikudoConfig'
+import { trainAndSave } from './src/nlp/trainAndSave'
+import { resolveMessage } from './src/state/resolveMessage'
 
-interface IRikudoOptions {
-  language: string,
+type IRikudoOptions = {
+  language: string
   intents: Intent[]
-  bot: RikudoConfig
+  botDefinition: RikudoConfig,
+  resolvers: Resolvers
 }
 
-const build = async ({ language = 'pt', bot }: IRikudoOptions) => {
+const build = async ({
+  language = 'pt',
+  botDefinition,
+  resolvers
+}: IRikudoOptions) => {
   const nlp: INlpManager = new NlpManager({
     languages: [language]
   })
 
-  const { allIntents } = bot
+  const { allIntents } = botDefinition
 
   await trainAndSave({
     nlp,
@@ -23,8 +29,14 @@ const build = async ({ language = 'pt', bot }: IRikudoOptions) => {
     language
   })
 
+  return {
+    message: resolveMessage({
+      botDefinition,
+      nlp,
+      ...resolvers
+    })
+  }
 }
 
-export {
-  build
-}
+export { build }
+
