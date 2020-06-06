@@ -1,4 +1,4 @@
-import { build, BotDefinition } from './index'
+import { build, BotDefinition } from '../index'
 
 const sessions = new Map()
 
@@ -13,21 +13,21 @@ const getSession = (userId) => {
 const botDefinition: BotDefinition = {
   allIntents: [
     {
-      name: 'BOLO',
-      training: ['bolo', 'quero um bolo', 'tem bolo ai?']
+      name: 'CAKE',
+      training: ['cake', 'I want a cake']
     }
   ],
-  language: 'pt',
+  language: 'en',
   states: [
     {
       name: 'START',
-      startTexts: ['Oi, como posso te ajudar?'],
+      startTexts: ['watch you want to?', 'hi, how i can help you'],
       actions: [{
-        onIntent: 'BOLO',
-        responses: ['Ok, tenho bolos aqui, qual vc quer?']
+        onIntent: 'CAKE',
+        responses: ['nice, I have cakes']
       }],
       unknownIntentAction: {
-        responses: ['Não te entendi, como posso ajudar?']
+        responses: [`i didn't understand`]
       }
     }
   ],
@@ -42,24 +42,24 @@ const start = async () => {
 
   const responses = [
     await app.message({
-      text: 'oi',
+      text: 'hi',
       userId: 'sample-id'
     }),
     await app.message({
-      text: 'quero um bolo',
+      text: 'I want a cake',
       userId: 'sample-id'
     }),
     await app.message({
-      text: 'patos não voam',
+      text: 'some random text',
       userId: 'sample-id'
     })
   ]
 
   /**
    * [
-   *   { response: 'Oi, Como posso te ajudar?' },
-   *   { response: 'Ok, tenho bolos aqui, qual vc quer?' },
-   *   { response: 'Não te entendi, como posso ajudar?' }
+   *   { response: 'hi, how i can help you' },
+   *   { response: 'nice, I have cakes' },
+   *   { response: 'i didn\'t understand' }
    * ]
    */
   console.log(await Promise.all(responses))

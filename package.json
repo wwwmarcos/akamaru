@@ -4,13 +4,15 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc --sourceMap "
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "node-nlp": "^4.4.0"
+    "node-nlp": "^4.4.0",
+    "uuid": "^8.1.0"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",

@@ -1,0 +1,203 @@
+{
+  "settings": {
+    "languages": [
+      "pt"
+    ],
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp"
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "pt"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "pt": {
+        "settings": {
+          "locale": "pt",
+          "tag": "domain-manager-pt",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "trainByDomain": false,
+          "useStemDict": true
+        },
+        "stemDict": {
+          "bol": {
+            "intent": "BOLO",
+            "domain": "default"
+          },
+          "bol,quer,um": {
+            "intent": "BOLO",
+            "domain": "default"
+          },
+          "ai,bol,tem": {
+            "intent": "BOLO",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "BOLO": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "bolo",
+            "intent": "BOLO"
+          },
+          {
+            "domain": "default",
+            "utterance": "quero um bolo",
+            "intent": "BOLO"
+          },
+          {
+            "domain": "default",
+            "utterance": "tem bolo ai?",
+            "intent": "BOLO"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "pt",
+              "tag": "nlu-pt",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "bol": 1,
+              "quer": 1,
+              "um": 1,
+              "tem": 1,
+              "ai": 1
+            },
+            "intents": {
+              "BOLO": 1
+            },
+            "intentFeatures": {
+              "BOLO": [
+                "bol",
+                "quer",
+                "um",
+                "tem",
+                "ai"
+              ]
+            },
+            "featuresToIntent": {
+              "bol": [
+                "BOLO"
+              ],
+              "quer": [
+                "BOLO"
+              ],
+              "um": [
+                "BOLO"
+              ],
+              "tem": [
+                "BOLO"
+              ],
+              "ai": [
+                "BOLO"
+              ]
+            },
+            "neuralNetwork": {
+              "features": [
+                "bol",
+                "quer",
+                "um",
+                "tem",
+                "ai",
+                "nonefeature"
+              ],
+              "intents": [
+                "BOLO",
+                "None"
+              ],
+              "perceptrons": [
+                [
+                  9.213696479797363,
+                  0.12245352566242218,
+                  0.12245352566242218,
+                  0.12428518384695053,
+                  0.12428518384695053,
+                  -3.0456817150115967,
+                  3.08222891785648
+                ],
+                [
+                  -3.1173391342163086,
+                  -0.4152976870536804,
+                  -0.4152976870536804,
+                  -0.39298322796821594,
+                  -0.39298322796821594,
+                  9.36746883392334,
+                  3.125210536136329
+                ]
+              ],
+              "perceptronSettings": {
+                "locale": "pt",
+                "tag": "nlu-pt",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "pt",
+        "bolo"
+      ],
+      [
+        "pt",
+        "quero um bolo"
+      ],
+      [
+        "pt",
+        "tem bolo ai?"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {}
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}

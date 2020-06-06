@@ -9,6 +9,7 @@ const resolveFirstContact = async (
   availableStates: State[]
 ) => {
   const newSession = createSession(userId)
+
   await saveSession(userId, newSession)
 
   const startState = getState(
