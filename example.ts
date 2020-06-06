@@ -29,6 +29,7 @@ const botDefinition: BotDefinition = {
       unknownIntentAction: {
         responses: [`i didn't understand`]
       }
+    }
   ],
   resolvers: {
     getSession,
