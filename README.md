@@ -32,8 +32,6 @@ const botDefinition: BotDefinition = {
     saveSession
   }
 }
-}
-
-start()
-
 ```
+
+  
