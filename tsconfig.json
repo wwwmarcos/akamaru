@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2019",
+    "target": "es2018",
     "outDir": "./build/",
     "removeComments": true,
     "noImplicitAny": false,
@@ -11,8 +11,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "baseUrl": "./src",
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
-  "compileOnSave": true
+  "compileOnSave": true,
+  "include": [
+    "**.ts"
+  ]
 }
