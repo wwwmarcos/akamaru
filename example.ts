@@ -1,37 +1,34 @@
 import { build, BotDefinition } from './index'
 
-const sessions = {}
+const sessions = new Map()
 
 const saveSession = (userId, session) => {
-  sessions[userId] = session
+  sessions.set(userId, session)
 }
 
 const getSession = (userId) => {
-  return sessions[userId]
-}
-
-const allBotIntents = [{
-  name: 'GREETINGS',
-  training: ['hi', 'sup', 'hello']
-}]
-
-const startState = {
-  name: 'START',
-  startTexts: ['hi', 'welcome'],
-  actions: [{
-    onIntent: 'GREETINGS',
-    responses: ['hi, how i can help you?']
-  }],
-  unknownIntentAction: {
-    responses: ['wtf?']
-  }
+  return sessions.get(userId)
 }
 
 const botDefinition: BotDefinition = {
-  allIntents: allBotIntents,
-  language: 'pt',
+  allIntents: [
+    {
+      name: 'CAKE',
+      training: ['cake', 'I want a cake']
+    }
+  ],
+  language: 'en',
   states: [
-    startState
+    {
+      name: 'START',
+      startTexts: ['watch you want to?', 'hi, how i can help you'],
+      actions: [{
+        onIntent: 'CAKE',
+        responses: ['nice, I have cakes']
+      }],
+      unknownIntentAction: {
+        responses: [`i didn't understand`]
+      }
   ],
   resolvers: {
     getSession,
@@ -42,14 +39,29 @@ const botDefinition: BotDefinition = {
 const start = async () => {
   const app = await build(botDefinition)
 
-  const response = await app.message({
-    text: 'hi',
-    userId: 'aidy'
-  })
+  const responses = [
+    await app.message({
+      text: 'hi',
+      userId: 'sample-id'
+    }),
+    await app.message({
+      text: 'I want a cake',
+      userId: 'sample-id'
+    }),
+    await app.message({
+      text: 'some random text',
+      userId: 'sample-id'
+    })
+  ]
 
-  console.log(
-    response
-  )
+  /**
+   * [
+   *   { response: 'hi, how i can help you' },
+   *   { response: 'nice, I have cakes' },
+   *   { response: 'i didn\'t understand' }
+   * ]
+   */
+  console.log(await Promise.all(responses))
 }
 
-start();
+start()
