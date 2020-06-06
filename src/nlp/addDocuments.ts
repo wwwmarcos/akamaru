@@ -1,5 +1,5 @@
-import { Intent } from '../interfaces/Intent'
-import { INlpManager } from '../interfaces/INlpManager'
+import { Intent } from 'interfaces/Intent'
+import { INlpManager } from 'interfaces/INlpManager'
 
 const addDocuments = (options: {
   nlp: INlpManager,

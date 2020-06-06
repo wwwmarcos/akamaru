@@ -1,4 +1,4 @@
-import { Action } from '../interfaces/State'
+import { Action } from 'interfaces/State'
 
 const getIntentAction = (
   actions: Action[],

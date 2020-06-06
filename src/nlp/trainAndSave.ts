@@ -1,4 +1,4 @@
-import { Intent } from '../interfaces/Intent'
+import { Intent } from 'interfaces/Intent'
 import { addDocuments } from './addDocuments'
 import { INlpManager } from '../interfaces/INlpManager'
 

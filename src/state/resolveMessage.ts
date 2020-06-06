@@ -1,10 +1,10 @@
-import { Resolvers, BotDefinition } from '../interfaces/RikudoConfig'
+import { Resolvers, BotDefinition } from 'interfaces/RikudoConfig'
 import { getIntentAction } from './getIntentAction'
 import { getState } from './getState'
 import { resolveAction } from './resolveAction'
 import { resolveFirstContact } from './resolveFirstContact'
 import { sendResponse } from './sendResponse'
-import { INlpManager } from '../interfaces/INlpManager'
+import { INlpManager } from 'interfaces/INlpManager'
 
 const resolveMessage = (utils: {
   saveSession: Resolvers['saveSession'],

@@ -1,4 +1,4 @@
-import { State, Action, UnknownIntentAction } from '../interfaces/State'
+import { State, Action, UnknownIntentAction } from 'interfaces/State'
 import { getState } from './getState'
 
 const resolveAction = (options: {

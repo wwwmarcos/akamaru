@@ -1,7 +1,7 @@
 import { createSession } from './createSession'
 import { getState } from './getState'
 import { sendResponse } from './sendResponse'
-import { State } from '../interfaces/State'
+import { State } from 'interfaces/State'
 
 const resolveFirstContact = async (
   saveSession,
