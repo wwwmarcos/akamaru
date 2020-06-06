@@ -6,6 +6,7 @@ const buildNlpObject = (): INlpManager => ({
   addDocument: jest.fn(),
   train: jest.fn(),
   process: jest.fn(),
+  load: jest.fn(),
   save: jest.fn()
 })
 

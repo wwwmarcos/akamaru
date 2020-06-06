@@ -6,6 +6,9 @@ interface INlpManager {
     training: string,
     intent: string
   ) => Promise<void>
+  load: (
+    fileName?: string,
+  ) => Promise<void>
   process: (
     language: string,
     utterance: string
