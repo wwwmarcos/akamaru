@@ -13,20 +13,19 @@ type UserSession = {
 }
 
 type Resolvers = {
-  saveSession: (userId: string, state: UserSession) => Promise<UserSession>
-  getSession: (userId: string) => Promise<UserSession>
+  saveSession: (userId: string, state: UserSession) => Promise<UserSession> | void
+  getSession: (userId: string) => Promise<UserSession> | void
 }
 
-type RikudoConfig = {
+type BotDefinition = {
   allIntents: Intent[]
   language: string
-  training: string[]
   states: State[],
   resolvers: Resolvers
 }
 
 export {
-  RikudoConfig,
+  BotDefinition,
   Resolvers,
   UserSession
 }
