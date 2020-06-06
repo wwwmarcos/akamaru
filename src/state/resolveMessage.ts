@@ -9,7 +9,7 @@ import { INlpManager } from '../interfaces/INlpManager'
 const resolveMessage = (utils: {
   saveSession: Resolvers['saveSession'],
   getSession: Resolvers['getSession'],
-  bot: RikudoConfig,
+  botDefinition: RikudoConfig,
   nlp: INlpManager
 }) =>
   async (options: {
