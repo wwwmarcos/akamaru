@@ -6,6 +6,59 @@ import { resolveFirstContact } from './resolveFirstContact'
 import { sendResponse } from './sendResponse'
 import { INlpManager } from 'interfaces/INlpManager'
 
+const getActionResponse = async (options: {
+  currentStateName,
+  availableStates,
+  intent,
+  session
+}) => {
+
+  const { currentStateName, availableStates, session, intent } = options
+
+  const currentStateConfig = getState(
+    currentStateName,
+    availableStates
+  )
+
+  const action = getIntentAction(
+    currentStateConfig.actions,
+    intent
+  ) || currentStateConfig.unknownIntentAction
+
+  const { responses, nextState } = await resolveAction({
+    action,
+    availableStates,
+    currentStateConfig,
+    session
+  })
+
+  if (!nextState) {
+    return {
+      responses: [responses],
+      currentStateName
+    }
+  }
+
+  const nextStateConfig = getState(
+    nextState.name,
+    availableStates
+  )
+
+  if (nextState.intent) {
+    return getActionResponse({
+      currentStateName: nextState.name,
+      availableStates,
+      intent: nextState.intent,
+      session
+    })
+  }
+
+  return {
+    responses: [responses, nextStateConfig.startTexts],
+    currentStateName: nextStateConfig.name
+  }
+}
+
 const resolveMessage = (utils: {
   botDefinition: BotDefinition,
   nlp: INlpManager
@@ -30,35 +83,28 @@ const resolveMessage = (utils: {
       )
     }
 
-    const currentStateConfig = getState(
-      session.currentStateName,
-      availableStates
-    )
-
     const { intent } = await nlp.process(
       language,
       text
     )
 
-    const action = getIntentAction(
-      currentStateConfig.actions,
-      intent
-    ) || currentStateConfig.unknownIntentAction
-
-    const { responses, nextState } = resolveAction({
-      action,
+    const { responses, currentStateName } = await getActionResponse({
+      currentStateName: session.currentStateName,
       availableStates,
-      currentStateConfig
+      intent,
+      session
     })
 
-    if (nextState) {
-      const newSession = {
-        ...session,
-        currentStateName: nextState
-      }
-
-      await saveSession(userId, newSession)
+    const newSession = {
+      ...session,
+      currentStateName,
+      stack: [
+        ...session.stack,
+        { userText: text }
+      ]
     }
+
+    await saveSession(userId, newSession)
 
     return sendResponse(responses)
   }
