@@ -17,7 +17,7 @@ const resolveFirstContact = async (
     availableStates
   )
 
-  return sendResponse(startState.startTexts)
+  return sendResponse([startState.startTexts])
 }
 
 export {
