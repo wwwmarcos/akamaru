@@ -4,7 +4,7 @@ import { BotDefinition } from './src/interfaces/RikudoConfig'
 import { trainAndSave } from './src/nlp/trainAndSave'
 import { resolveMessage } from './src/state/resolveMessage'
 
-const build = async (botDefinition: BotDefinition) => {
+const build = (botDefinition: BotDefinition) => {
 
   const { allIntents, resolvers, language } = botDefinition
 
