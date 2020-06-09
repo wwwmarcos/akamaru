@@ -12,13 +12,12 @@ const build = async (botDefinition: BotDefinition) => {
     languages: [language]
   })
 
-  await trainAndSave({
-    nlp,
-    intents: allIntents,
-    language
-  })
-
   return {
+    trainAndSave: () => trainAndSave({
+      nlp,
+      intents: allIntents,
+      language
+    }),
     message: resolveMessage({
       botDefinition,
       nlp,
