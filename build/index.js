@@ -4,17 +4,17 @@ exports.build = void 0;
 const node_nlp_1 = require("node-nlp");
 const trainAndSave_1 = require("./src/nlp/trainAndSave");
 const resolveMessage_1 = require("./src/state/resolveMessage");
-const build = async (botDefinition) => {
+const build = (botDefinition) => {
     const { allIntents, resolvers, language } = botDefinition;
     const nlp = new node_nlp_1.NlpManager({
         languages: [language]
     });
-    await trainAndSave_1.trainAndSave({
-        nlp,
-        intents: allIntents,
-        language
-    });
     return {
+        trainAndSave: () => trainAndSave_1.trainAndSave({
+            nlp,
+            intents: allIntents,
+            language
+        }),
         message: resolveMessage_1.resolveMessage({
             botDefinition,
             nlp,
