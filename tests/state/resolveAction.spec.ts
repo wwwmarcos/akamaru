@@ -2,8 +2,15 @@
 import { resolveAction } from '../../src/state/resolveAction'
 import { states } from '../mockData'
 import { Action } from '../../src/interfaces/State'
+import { UserSession } from '../../src/interfaces/RikudoConfig'
 
 describe('state/resolveAction', () => {
+
+  const session: UserSession = {
+    userId: '1',
+    currentStateName: 'START'
+  }
+
   it('should return the responses from action', async () => {
     const [currentStateConfig] = states
     const { unknownIntentAction } = currentStateConfig
@@ -13,7 +20,8 @@ describe('state/resolveAction', () => {
     const { responses, nextState } = await resolveAction({
       action: unknownIntentAction,
       availableStates: states,
-      currentStateConfig
+      currentStateConfig,
+      session
     })
 
     expect(responses).toStrictEqual(expectedResponses)
@@ -24,7 +32,9 @@ describe('state/resolveAction', () => {
     const [currentStateConfig] = states
 
     const action: Action = {
-      goToState: '02'
+      goToState: {
+        name: '02'
+      }
     }
 
     const expectedResponses = ['hi from second state']
@@ -32,10 +42,11 @@ describe('state/resolveAction', () => {
     const { responses, nextState } = await resolveAction({
       action,
       availableStates: states,
-      currentStateConfig
+      currentStateConfig,
+      session
     })
 
-    expect(nextState).toEqual('02')
+    expect(nextState.name).toEqual('02')
     expect(responses).toStrictEqual(expectedResponses)
   })
 })
