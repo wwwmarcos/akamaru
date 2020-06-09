@@ -15,6 +15,7 @@
   },
   "compileOnSave": true,
   "include": [
-    "**.ts"
+    "./**.ts",
+    "./examples/**.ts"
   ]
 }
