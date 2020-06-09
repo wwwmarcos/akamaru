@@ -4,10 +4,11 @@ import { State } from './State'
 type UserSession = {
   userId: string
   currentStateName: string
-  stack: {
+  stack?: {
     eventName?: string,
     intent?: string,
-    action?: string
+    action?: string,
+    userText?: string
   }[],
   userData?: {}
 }
