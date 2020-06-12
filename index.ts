@@ -18,6 +18,7 @@ const build = (botDefinition: BotDefinition) => {
       intents: allIntents,
       language
     }),
+    load: (fileName?: string) => nlp.load(fileName),
     message: resolveMessage({
       botDefinition,
       nlp,
