@@ -20,6 +20,7 @@ const resolveAction = async (options) => {
     if (action.goToState) {
         const nextStateConfig = getState_1.getState(action.goToState.name, availableStates);
         return {
+            ignoreStartTexts: true,
             responses: nextStateConfig.startTexts,
             nextState: action.goToState
         };

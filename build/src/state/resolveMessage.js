@@ -10,7 +10,7 @@ const getActionResponse = async (options) => {
     const { currentStateName, availableStates, session, intent } = options;
     const currentStateConfig = getState_1.getState(currentStateName, availableStates);
     const action = getIntentAction_1.getIntentAction(currentStateConfig.actions, intent) || currentStateConfig.unknownIntentAction;
-    const { responses, nextState } = await resolveAction_1.resolveAction({
+    const { responses, nextState, ignoreStartTexts } = await resolveAction_1.resolveAction({
         action,
         availableStates,
         currentStateConfig,
@@ -30,6 +30,12 @@ const getActionResponse = async (options) => {
             intent: nextState.intent,
             session
         });
+    }
+    if (ignoreStartTexts) {
+        return {
+            responses: [responses],
+            currentStateName: nextStateConfig.name
+        };
     }
     return {
         responses: [responses, nextStateConfig.startTexts],
@@ -57,7 +63,10 @@ const resolveMessage = (utils) => async (options) => {
         currentStateName,
         stack: [
             ...session.stack,
-            { userText: text }
+            {
+                userText: text,
+                botResponse: responses
+            }
         ]
     };
     await saveSession(userId, newSession);
