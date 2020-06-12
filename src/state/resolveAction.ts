@@ -7,7 +7,11 @@ const resolveAction = async (options: {
   availableStates: State[],
   currentStateConfig: State,
   session: UserSession
-}): Promise<{ responses: string[], nextState?: { name: string, intent?: string } }> => {
+}): Promise<{
+  responses: string[],
+  ignoreStartTexts?: boolean,
+  nextState?: { name: string, intent?: string }
+}> => {
 
   const { action, availableStates, currentStateConfig, session } = options
 
@@ -34,6 +38,7 @@ const resolveAction = async (options: {
     )
 
     return {
+      ignoreStartTexts: true,
       responses: nextStateConfig.startTexts,
       nextState: action.goToState
     }

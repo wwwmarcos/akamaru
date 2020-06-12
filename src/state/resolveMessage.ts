@@ -25,7 +25,7 @@ const getActionResponse = async (options: {
     intent
   ) || currentStateConfig.unknownIntentAction
 
-  const { responses, nextState } = await resolveAction({
+  const { responses, nextState, ignoreStartTexts } = await resolveAction({
     action,
     availableStates,
     currentStateConfig,
@@ -51,6 +51,13 @@ const getActionResponse = async (options: {
       intent: nextState.intent,
       session
     })
+  }
+
+  if (ignoreStartTexts) {
+    return {
+      responses: [responses],
+      currentStateName: nextStateConfig.name
+    }
   }
 
   return {
@@ -100,7 +107,10 @@ const resolveMessage = (utils: {
       currentStateName,
       stack: [
         ...session.stack,
-        { userText: text }
+        {
+          userText: text,
+          botResponse: responses
+        }
       ]
     }
 
