@@ -8,16 +8,6 @@ chatbot framework
 `npm add akamaru` or `yarn add akamaru`
 
 # Usage
-
-```javascript
-const akamaru = require('akamaru')
-const bot = akamaru.build(botDefinition)
-
-
-```
-
-# Bot Definition example
-
 ```javascript
 const akamaru = require('akamaru')
 
