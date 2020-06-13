@@ -4,10 +4,24 @@
 
 chatbot framework
 
+# Install
+`npm add akamaru` or `yarn add akamaru`
+
+# Usage
+
+```javascript
+const akamaru = require('akamaru')
+const bot = akamaru.build(botDefinition)
+
+
+```
+
 # Bot Definition example
 
 ```javascript
-const botDefinition: BotDefinition = {
+const akamaru = require('akamaru')
+
+const botDefinition = {
   allIntents: [
     {
       name: 'CAKE',
@@ -33,6 +47,15 @@ const botDefinition: BotDefinition = {
     saveSession
   }
 }
+
+const bot = akamaru.build(botDefinition)
+
+bot.trainAndSave()
+
+const { response } = await bot.message({
+  userId: 'oi',
+  text: text
+})
 ```
 
   
