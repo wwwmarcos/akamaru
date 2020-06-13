@@ -50,4 +50,9 @@ const { response } = await bot.message({
 console.log(response) // nice, I have cakes
 ```
 
+### Roadmap  
+
+* More tests
+* Documentation   
+
   
