@@ -43,9 +43,11 @@ const bot = akamaru.build(botDefinition)
 bot.trainAndSave()
 
 const { response } = await bot.message({
-  userId: 'oi',
-  text: text
+  userId: '432423423',
+  text: 'I want a cake'
 })
+
+console.log(response) // nice, I have cakes
 ```
 
   
